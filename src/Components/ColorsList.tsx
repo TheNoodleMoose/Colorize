@@ -1,13 +1,24 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const ColorsList = ({ colors, saveColor, savedCount, savedColors }) => {
+interface Props {
+  colors: any;
+  saveColor: (color: string, colorValue: string) => void;
+  savedCount: number;
+  savedColors: any;
+}
+
+interface color {
+  value: string;
+}
+
+const ColorsList = ({ colors, saveColor, savedCount, savedColors }: Props) => {
   if (!colors) {
     return <div>Fetching colors...</div>;
   }
   return (
     <>
-      {colors.map(color => (
+      {colors.map((color: color) => (
         <ColorBlockContainer key={color.value}>
           <ColorBlock
             style={{ backgroundColor: color.value, color: color.value }}
